@@ -1,5 +1,8 @@
 <script>
     import { onMount } from "svelte";
+    import {writable} from "svelte/store";
+
+    let userInfo = writable(undefined);
 
     onMount(() => {
         const script = document.createElement("script");
@@ -10,22 +13,12 @@
         script.setAttribute("data-request-access", "write");
         script.setAttribute("data-userpic", "true");
         script.setAttribute("data-onauth", "onTelegramAuth(user)");
-        document.getElementById("telegram-login").appendChild(script);
 
         window.onTelegramAuth = (user) => {
             console.log("Telegram user:", user);
             alert(user)
 
-            // fetch("/api/auth/telegram", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(user)
-            // });
-        };
-
-        const onTelegramAuth = (user) => {
-            console.log("123Telegram user:", user);
-            alert(`123, ${user}`)
+            userInfo.set(user);
 
             // fetch("/api/auth/telegram", {
             //     method: "POST",
@@ -33,7 +26,15 @@
             //     body: JSON.stringify(user)
             // });
         };
+
+        document.getElementById("telegram-login").appendChild(script);
     });
 </script>
 
 <div id="telegram-login"></div>
+
+{#if $userInfo !== undefined}
+    {$userInfo}
+    {$userInfo.name}
+    123123123123123123
+{/if}
