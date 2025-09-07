@@ -14,6 +14,18 @@
 
         window.onTelegramAuth = (user) => {
             console.log("Telegram user:", user);
+            alert(user)
+
+            // fetch("/api/auth/telegram", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify(user)
+            // });
+        };
+
+        const onTelegramAuth = (user) => {
+            console.log("123Telegram user:", user);
+            alert(`123, ${user}`)
 
             // fetch("/api/auth/telegram", {
             //     method: "POST",
