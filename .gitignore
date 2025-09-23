@@ -23,3 +23,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /package-lock.json
 /.idea/modules.xml
+/.idea/vcs.xml
